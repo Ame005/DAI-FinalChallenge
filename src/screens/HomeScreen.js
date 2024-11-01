@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
-import PlateSearch from '../components/PlateSearch';
-import PlateItem from '../components/PlateItem';
+import PlatoBusqueda from '../components/PlatoBusqueda';
+import PlatoItem from '../components/PlatoItem';
 
 const Home = () => {
     const [menu, setMenu] = useState([]);
@@ -20,9 +20,9 @@ const Home = () => {
 
     return (
         <View>
-            <PlateSearch onAddPlate={addPlateToMenu} />
+            <PlatoBusqueda onAddPlate={addPlateToMenu} />
             {menu.map(plate => (
-                <PlateItem key={plate.id} plate={plate} onDelete={removePlateFromMenu} />
+                <PlatoItem key={plate.id} plate={plate} onDelete={removePlateFromMenu} />
             ))}
             {/* Aquí puedes agregar la lógica para mostrar el precio acumulado y el HealthScore promedio */}
         </View>

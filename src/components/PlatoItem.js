@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, Button } from 'react-native';
 
-const PlateItem = ({ plate, onDelete, onViewDetail }) => {
+const PlatoItem = ({ plate, onDelete, onViewDetail }) => {
     return (
         <View>
             <Text>{plate.name}</Text>
@@ -12,4 +12,4 @@ const PlateItem = ({ plate, onDelete, onViewDetail }) => {
     );
 };
 
-export default PlateItem;
+export default PlatoItem;

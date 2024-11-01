@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { View, TextInput, FlatList } from 'react-native';
 import axios from 'axios';
-import PlateItem from './PlateItem';
+import PlatoItem from './PlatoItem';
 
-const PlateSearch = ({ onAddPlate }) => {
+const PlatoBusqueda = ({ onAddPlate }) => {
     const [query, setQuery] = useState('');
-    const [plates, setPlates] = useState([]);
+    const [platos, setPlatos] = useState([]);
 
-    const searchPlates = async () => {
+    const searchPlatos = async () => {
         if (query.length < 3) return;
 
         const response = await axios.get(`API_URL/search?query=${query}`);
-        setPlates(response.data); // Asegúrate de adaptar esto a la estructura de tu API
+        setPlatos(response.data); // Asegúrate de adaptar esto a la estructura de tu API
     };
 
     return (
@@ -21,13 +21,13 @@ const PlateSearch = ({ onAddPlate }) => {
                 value={query}
                 onChangeText={text => {
                     setQuery(text);
-                    searchPlates();
+                    searchPlatos();
                 }}
             />
             <FlatList
-                data={plates}
+                data={platos}
                 renderItem={({ item }) => (
-                    <PlateItem plate={item} onAddPlate={onAddPlate} />
+                    <PlatoItem plate={item} onAddPlate={onAddPlate} />
                 )}
                 keyExtractor={item => item.id.toString()}
             />
@@ -35,4 +35,4 @@ const PlateSearch = ({ onAddPlate }) => {
     );
 };
 
-export default PlateSearch;
+export default PlatoBusqueda;
