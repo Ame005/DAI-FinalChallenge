@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import PlatoBusqueda from '../components/PlatoBusqueda';
 import PlatoItem from '../components/PlatoItem';
+import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
+    const navigation = useNavigation();
     const [menu, setMenu] = useState([]);
 
     // Función para agregar un plato al menú

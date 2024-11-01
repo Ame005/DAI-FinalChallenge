@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Button } from 'react-native';
 import PlatoDetalle from '../components/PlatoDetalle';
 import { getPlateDetails } from '../api/spooncular';
+import { useNavigation } from '@react-navigation/native';
 
 const DetallePlatoScreen = ({ route, navigation }) => {
     const { plateId } = route.params; // Obtener el ID del plato desde la navegación

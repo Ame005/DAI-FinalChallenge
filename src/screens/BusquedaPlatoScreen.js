@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import PlatoBusqueda from '../components/PlatoBusqueda';
+import { useNavigation } from '@react-navigation/native';
 
 const BusquedaPlatoScreen = ({ navigation }) => {
     const handleAddPlate = (plate) => {
