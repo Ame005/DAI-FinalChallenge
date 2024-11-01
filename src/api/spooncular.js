@@ -23,6 +23,7 @@ export const searchPlatos = async (query) => {
             params: {
                 apiKey: API_KEY,
                 query,
+                number: 10, // Puedes ajustar este número según lo que necesites
             },
         });
         return response.data.results; // Asegúrate de que esto se ajuste a la respuesta de la API

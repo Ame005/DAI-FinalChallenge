@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { View, TextInput, FlatList } from 'react-native';
-import axios from 'axios';
 import PlatoItem from './PlatoItem';
+import { searchPlatos } from '../api/spooncular'; // Asegúrate de que la ruta sea correcta
 
 const PlatoBusqueda = ({ onAddPlate }) => {
     const [query, setQuery] = useState('');
     const [platos, setPlatos] = useState([]);
 
-    const searchPlatos = async () => {
-        if (query.length < 3) return;
-
-        const response = await axios.get(`API_URL/search?query=${query}`);
-        setPlatos(response.data); // Asegúrate de adaptar esto a la estructura de tu API
+    const handleSearch = async (text) => {
+        setQuery(text);
+        if (text.length < 3) {
+            setPlatos([]); // Limpiar resultados si el texto es menor a 3 caracteres
+            return;
+        }
+        try {
+            const results = await searchPlatos(text);
+            setPlatos(results);
+        } catch (error) {
+            console.error("Error searching platos:", error);
+        }
     };
 
     return (
@@ -19,10 +26,7 @@ const PlatoBusqueda = ({ onAddPlate }) => {
             <TextInput
                 placeholder="Buscar platos"
                 value={query}
-                onChangeText={text => {
-                    setQuery(text);
-                    searchPlatos();
-                }}
+                onChangeText={handleSearch}
             />
             <FlatList
                 data={platos}
