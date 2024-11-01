@@ -31,6 +31,10 @@ const Home = () => {
     // Cálculo del precio acumulativo
     const totalPrice = menu.reduce((total, plate) => total + plate.price, 0);
 
+    const viewPlateDetail = (plate) => {
+        navigation.navigate('Detalle', { plate });
+    };
+
     // Cálculo del promedio de HealthScore
     const averageHealthScore = menu.length > 0 
         ? (menu.reduce((total, plate) => total + plate.healthScore, 0) / menu.length).toFixed(2) 
@@ -38,9 +42,9 @@ const Home = () => {
 
     return (
         <View>
-            <PlatoBusqueda onAddPlate={addPlateToMenu} />
+            <PlatoBusqueda onAddPlate={addPlateToMenu} onViewDetail={viewPlateDetail}/>
             {menu.map(plate => (
-                <PlatoItem key={plate.id} plate={plate} onDelete={removePlateFromMenu} />
+                <PlatoItem key={plate.id} plate={plate}  onDelete={removePlateFromMenu} onViewDetail={viewPlateDetail}/>
             ))}
             <Text>Precio Total: ${totalPrice}</Text>
             <Text>Puntuación Saludable Promedio: {averageHealthScore}</Text>

@@ -3,7 +3,7 @@ import { View, TextInput, FlatList } from 'react-native';
 import PlatoItem from './PlatoItem';
 import { searchPlatos } from '../api/spooncular'; // Asegúrate de que la ruta sea correcta
 
-const PlatoBusqueda = ({ onAddPlate }) => {
+const PlatoBusqueda = ({ onAddPlate, onViewDetail }) => {
     const [query, setQuery] = useState('');
     const [platos, setPlatos] = useState([]);
 
@@ -31,7 +31,11 @@ const PlatoBusqueda = ({ onAddPlate }) => {
             <FlatList
                 data={platos}
                 renderItem={({ item }) => (
-                    <PlatoItem plate={item} onAddPlate={onAddPlate} />
+                    <PlatoItem 
+                        plate={item} 
+                        onAddPlate={onAddPlate} 
+                        onViewDetail={onViewDetail} // Asegúrate de pasar esta prop
+                    />
                 )}
                 keyExtractor={item => item.id.toString()}
             />
